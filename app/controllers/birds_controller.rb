@@ -1,4 +1,7 @@
 class BirdsController < ApplicationController
+  # wrap_parameters format: [] # Disable wrap parameters in individual conroller.
+
+  
 
   # GET /birds
   def index
@@ -8,7 +11,8 @@ class BirdsController < ApplicationController
 
   # POST /birds
   def create
-    bird = Bird.create(name: params[:name], species: params[:species])
+    # byebug
+    bird = Bird.create(params.permit(:name, :species))
     render json: bird, status: :created
   end
 
